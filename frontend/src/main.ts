@@ -3,11 +3,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 import './style.css'
 import App from './App.vue'
 
+import Home from "./components/Home.vue"
+import Login from "./components/Login.vue"
+import SignUP from "./components/SignUP.vue"
+import Cart from "./components/Cart.vue"
+import Search from "./components/Search.vue"
+
 const routes = [
-  { path: "/", component: /* home component here*/},
-  { path: "/login", component: /* login component here*/ },
-  { path: "/signup", component: /* sign up component here */},
-  { path: "/cart", component: /* cart component here */}
+  { path: "/", component: Home},
+  { path: "/login", component: Login },
+  { path: "/signup", component: SignUP},
+  { path: "/cart", component: Cart},
+  { path: "/search", component: Search}
 ]
 
 const router = createRouter({
