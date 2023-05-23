@@ -7,4 +7,4 @@ const connection: Connection = mysql.createConnection({
   database: "ZARAT"
 })
 
-export default connection
+export default connection;
