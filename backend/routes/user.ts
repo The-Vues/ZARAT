@@ -3,12 +3,9 @@ import User from '../controller/user';
 
 const router: Router = express.Router();
 
-// router.get('/getAll', User.getAll);
-// router.get("/refresh/:id", User.refreshUser)
+router.get("/refresh/:id", User.re  freshUser)
+router.post("/signup", User.signup)
 
-// router.post("/login",User.login)
-// router.post("/signup", User.signup)
-// router.post('/add', User.addToCart);
 
 
 export default router;
