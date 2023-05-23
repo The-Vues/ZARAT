@@ -9,6 +9,7 @@ import SignUP from "./components/SignUP.vue"
 import Cart from "./components/Cart.vue"
 import Search from "./components/Search.vue"
 
+//routes that the app uses
 const routes = [
   { path: "/", component: Home},
   { path: "/login", component: Login },
