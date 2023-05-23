@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "bcrypt": "*",
-    "cors": "*",
+    "cors": "^2.8.5",
     "dotenv": "*",
-    "express": "*",
-    "jsonwebtoken": "*",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mysql": "^2.18.1"
   },
   "devDependencies": {

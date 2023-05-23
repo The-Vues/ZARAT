@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `ZARAT`.`user` (
   `Lname` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `cart_id` INT NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`, `cart_id`),
   INDEX `fk_user_cart_idx` (`cart_id` ASC) VISIBLE,
   CONSTRAINT `fk_user_cart`
