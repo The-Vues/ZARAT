@@ -5,8 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import itemsRouter from './routes/items';
 import userRouter from "./routes/user"
-
-const db = require("./model")
+import connectDB from './database/connection';
 
 const app = express();
 const port = 3001;
@@ -14,6 +13,7 @@ const port = 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+connectDB()
 
 app.use("/items", itemsRouter)
 app.use("/user",userRouter)

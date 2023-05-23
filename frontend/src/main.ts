@@ -8,6 +8,7 @@ import Login from "./components/Login.vue"
 import SignUP from "./components/SignUP.vue"
 import Cart from "./components/Cart.vue"
 import Search from "./components/Search.vue"
+import Help from "./components/Help.vue"
 
 //routes that the app uses
 const routes = [
@@ -15,7 +16,8 @@ const routes = [
   { path: "/login", component: Login },
   { path: "/signup", component: SignUP},
   { path: "/cart", component: Cart},
-  { path: "/search", component: Search}
+  { path: "/search", component: Search},
+  { path: "/help", component: Help}
 ]
 
 const router = createRouter({

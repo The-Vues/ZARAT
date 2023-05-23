@@ -17,5 +17,13 @@ export default defineComponent({
 </script>
 
 <style>
+  @font-face {
+    font-family: "default";
+    src: url("./fonts/Helvetica\ Neue\ UltraLight.ttf");
+  }
 
+  @font-face {
+    font-family: "medium";
+    src: url("./fonts/Helvetica\ Neue\ W01\ 66\ Medium\ It.ttf");
+  }
 </style>
