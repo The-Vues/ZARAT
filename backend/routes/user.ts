@@ -3,7 +3,7 @@ import User from '../controller/user';
 
 const router: Router = express.Router();
 
-router.get("/refresh/:id", User.re  freshUser)
+router.get("/refresh/:id", User.refreshUser)
 router.post("/signup", User.signup)
 
 
