@@ -27,7 +27,7 @@
   <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import axios from 'axios';
-  import { router } from './router'; // Import the router object from your Vue Router configuration file
+  import { router } from './router';
   
   export default defineComponent({
     setup() {
