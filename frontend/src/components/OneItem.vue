@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import AddToCart from "../components/AddToCart.vue";
 
 export default {

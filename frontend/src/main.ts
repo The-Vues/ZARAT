@@ -24,7 +24,7 @@ const routes = [
   { path: "/help", component: Help}
 ]
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(),
   routes
 })
