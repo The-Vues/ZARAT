@@ -38,19 +38,18 @@
       const handleSubmit = () => {
         const credentials = {
           email: email.value,
-          password: password.value
+          pass: password.value
         };
   
         axios.post("http://localhost:3001/user/login", credentials)
           .then((response) => {
-            const user = response.data;
   
-            if (user === "Email Doesn't Exist") {
+            if (response.data === "Email Doesn't Exist") {
               alert("Email doesn't exist");
-            } else if (user === "Password Incorrect") {
+            } else if (response.data === "Password Incorrect") {
               alert("Password Incorrect");
             } else {
-              localStorage.setItem("currentUser", JSON.stringify(user));
+              localStorage.setItem("currentUser", JSON.stringify(response.data));
               const storedUser = localStorage.getItem("currentUser");
               if (storedUser !== null) {
                 console.log(JSON.parse(storedUser));
