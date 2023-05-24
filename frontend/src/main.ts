@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import './style.css'
 import App from './App.vue'
 
+
+
 import Home from "./components/Home.vue"
 import Login from "./components/Login.vue"
 import SignUP from "./components/SignUP.vue"

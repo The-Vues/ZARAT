@@ -1,40 +1,52 @@
-<script setup lang="ts">
+<script lang="ts">
 
-import { reactive } from 'vue';
+import { defineComponent } from 'vue';
 
-//interface for typescript
-interface State{
-  query: string,
-  gender: string,
-  items: Array<any>,
-}
-
-export default{
-
-  setup(){
-    const state: State = reactive<State>({
-      query: "",
-      items: [],
-      gender: "woman"
-    })
-
-    // function to update the query
-    const setQuery = (newQuery: string) => {
-      state.query = newQuery
-    }
-
-    // function that we use to update the gender on button click
-    const handleGenderClick = (updatedGender) => {
-      state.gender = updatedGender
-    }
-
-    return {
-      state,
-      setQuery,
-      handleGenderClick
-    }
+export default defineComponent({
+name:"search",
+data(){
+  return{
+    query:""
   }
+},
+methods:{
+  check(){console.log(this.query)}
+}, 
+mounted(){
+  this.query="mehdi"
+
 }
+})
+// //interface for typescript
+// interface State{
+//   query: string,
+//   gender: string,
+//   items: Array<any>,
+// }
+  // setup(){
+  //   const state: State = reactive<State>({
+  //     query: "",
+  //     items: [],
+  //     gender: "woman"
+  //   })
+
+  //   // function to update the query
+  //   const setQuery = (newQuery: string) => {
+  //     state.query = newQuery
+  //   }
+
+  //   // function that we use to update the gender on button click
+  //   const handleGenderClick = (updatedGender) => {
+  //     state.gender = updatedGender
+  //   }
+
+  //   return {
+  //     state,
+  //     setQuery,
+  //     handleGenderClick
+  //   }
+  // }
+
 
 </script>
 
@@ -44,19 +56,19 @@ export default{
     <Navbar :showSearch="false" />
     <div id="search-gender-container">
       <div id="gender-container">
-        <button class="search-gender" @click="handleGenderClick('woman')">WOMAN</button>
+        <!-- <button class="search-gender" @click="handleGenderClick('woman')">WOMAN</button>
         <button class="search-gender" @click="handleGenderClick('man')">MAN</button>
-        <button class="search-gender" @click="handleGenderClick('kids')">KIDS</button>
+        <button class="search-gender" @click="handleGenderClick('kids')">KIDS</button> -->
       </div>
-      <input
+      <!-- <input
         type="text"
         v-model="state.query"
         placeholder="SEARCH FOR AN ITEM, COLOR, COLLECTION..."
-      />
+      /> -->
     </div>
-    <div id="items-container">
+    <!-- <div id="items-container">
       <OneItem v-for="(e, i) in state.items" :key="i" :id="e._id" :name="e.name" :price="e.price" :image="e.image" />
-    </div>
+    </div> -->
   </div>
 
 </template>
