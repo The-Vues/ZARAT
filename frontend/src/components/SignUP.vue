@@ -1,50 +1,71 @@
 <template>
     <div class="container-singin">
+      <!-- <Navbar /> -->
       <div class="Left-login-form">
         <h6 class="login-heading">CREATE AN ACCOUNT</h6>
+  
         <div class="form-input-label">
-          <input class="form-input-label" type="email" v-model="email" placeholder="E-MAIL" />
+          <input class="form-input-label" type="email" name="email" placeholder="E-MAIL" v-model="email" />
         </div>
         <div class="form-input-label">
           <input class="form-input-label" type="password" placeholder="PASSWORD" v-model="password" />
         </div>
         <div class="form-input-label">
-          <input type="text" id="fname" v-model="fname" placeholder="First Name" required>
+          <input class="form-input-label" type="Name" name="fName" placeholder="FirstName" v-model="fName" />
         </div>
         <div class="form-input-label">
-          <input type="text" id="lname" v-model="lname" placeholder="Last Name" required>
+          <input class="form-input-label" type="email" name="lname" placeholder="LastName" v-model="lName" />
         </div>
-        <button class="login-btn" @click="submitForm">CREATE ACCOUNT</button>
-        <br />
+        <button class="login-btn" @click="handleSubmit">CREATE ACCOUNT</button> <br />
       </div>
     </div>
   </template>
   
   <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import axios from 'axios';
+//   import Navbar from './Navbar.vue';
+
   
   export default defineComponent({
-    data() {
+    name: 'Page',
+    components: {
+    //   Navbar,
+    },
+    setup() {
+      const email = ref('');
+      const password = ref('');
+      const fName = ref('');
+      const lName = ref('');
+  
+      const handleSubmit = () => {
+        const logUser = {
+          email: email.value,
+          pass: password.value,
+          fName: fName.value,
+          lName: lName.value,
+          isAdmin: false,
+          cart: [],
+        };
+  
+        axios.post('http://localhost:3001/user/signup', logUser)
+          .then((user) => {
+            if (user.data === 'Email Already Exists') {
+              alert('Email Already Exists');
+            } else {
+              alert('Welcome to ZARA');
+            }
+          });
+      };
+  
       return {
-        email: '',
-        password: '',
-        fname: '',
-        lname: ''
+        email,
+        password,
+        fName,
+        lName,
+        handleSubmit,
       };
     },
-    methods: {
-      submitForm() {
-        const { email, password, fname, lname } = this
-        axios.post('http://localhost:3001/signup', { email, pass: password, fName: fname, lName: lname })
-          .then(response => {
-            console.log(response.data)
-          })
-          .catch(error => {
-            console.error(error)
-          })
-      }
-    }
   });
   </script>
   

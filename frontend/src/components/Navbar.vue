@@ -1,9 +1,9 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from "vue"
 import { useRouter } from "vue-router"
-import Image from "@/components/Image/Image.vue"
-import Offcanvas from "@/components/Offcanvas/Offcanvas.vue"
-import Search from "@/components/Search/Search.vue"
+
+import Offcanvas from "./Offcanvas.vue"
+import Search from "./Search.vue"
 
 interface NavbarProps {
   showSearch?: boolean
@@ -68,10 +68,10 @@ export default defineComponent({
     <Offcanvas/>
     <div id="pushImg"></div>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <img id="menu" src="@/assets/img/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="showOffcanvas !== false"/>
+      <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="showOffcanvas !== false"/>
       <div class="container px-4 px-lg-5">
         <router-link to="/">
-          <img id="logo" class="navbar-brand" src="@/assets/Logo.png" alt="..." style="cursor: pointer"/>
+          <img id="logo" class="navbar-brand" src="../assets/Logo.png" alt="..." style="cursor: pointer"/>
         </router-link>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
@@ -91,7 +91,7 @@ export default defineComponent({
             </li>
             <li class="nav-item" v-if="showCart !== false">
               <div class="nav-link" @click="goToCart" style="cursor: pointer">
-                <img id="bag" src="@/assets/img/bag.png" alt=".."/>
+                <img id="bag" src="../assets/bag.png" alt=".."/>
               </div>
             </li>
           </ul>
