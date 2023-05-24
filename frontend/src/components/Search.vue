@@ -3,7 +3,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-name:"search",
+name:"Search",
 data(){
   return{
     query:""

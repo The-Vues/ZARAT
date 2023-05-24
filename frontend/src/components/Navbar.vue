@@ -1,71 +1,52 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue"
+import { defineComponent, defineProps } from "vue"
 import { useRouter } from "vue-router"
 
 import Offcanvas from "./Offcanvas.vue"
 import Search from "./Search.vue"
 
-interface NavbarProps {
+interface Props{
   showSearch?: boolean
   showCart?: boolean
   showOffcanvas?: boolean
 }
 
+const props: Props = defineProps({
+  showSearch: { type: Boolean },
+  showCart: { type: Boolean },
+  showOffcanvas: { type: Boolean }
+})
+
 export default defineComponent({
   name: "Navbar",
-  components: {
-    Image,
-    Offcanvas,
-    Search,
-  },
-  props: {
-    showSearch: {
-      type: Boolean,
-      default: true,
-    },
-    showCart: {
-      type: Boolean,
-      default: true,
-    },
-    showOffcanvas: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  setup(props: NavbarProps) {
-    const router = useRouter()
-    const currentUser = ref<any>(JSON.parse(localStorage.getItem("currentUser") || "null"))
 
-    const logout = () => {
-      localStorage.removeItem("currentUser")
+  data() {
+    return {
+      router: useRouter(),
+      currentUser: JSON.parse(localStorage.getItem("currentUser") || "null")
     }
+  },
 
-    watch(currentUser, (newValue) => {
-      console.log(newValue)
-    })
+  methods: {
+    logout(){
+      localStorage.removeItem("currentUser")
+    },
 
-    const goToCart = () => {
-      if (currentUser.value) {
-        router.push("/cart")
+    goToCart(){
+      if (this.currentUser.value) {
+        this.$router.push("/cart")
       }
       else {
-        router.push("/login")
+        this.$router.push("/login")
       }
     }
-
-    return {
-      router,
-      currentUser,
-      logout,
-      goToCart,
-    }
-  },
+  }
 })
 </script>
 
 <template>
   <div>
-    <Offcanvas/>
+    <!-- <Offcanvas/> -->
     <div id="pushImg"></div>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="showOffcanvas !== false"/>
@@ -75,7 +56,7 @@ export default defineComponent({
         </router-link>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" v-if="showSearch !== false">
+            <li class="nav-item" v-if="this.props.showSearch !== false">
               <router-link to="/search">
                 <Search/>
               </router-link>
@@ -89,7 +70,7 @@ export default defineComponent({
             <li class="nav-item">
               <a class="nav-link" href="/help">HELP</a>
             </li>
-            <li class="nav-item" v-if="showCart !== false">
+            <li class="nav-item" v-if="this.props.showCart !== false">
               <div class="nav-link" @click="goToCart" style="cursor: pointer">
                 <img id="bag" src="../assets/bag.png" alt=".."/>
               </div>
