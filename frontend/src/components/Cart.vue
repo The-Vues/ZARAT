@@ -1,6 +1,5 @@
-  <template>
+<template>
     <div>
-        
       <div id="cart-container">
         <button class="search-gender">CART</button>
         <button class="search-gender">FAVORITES</button>
@@ -16,14 +15,13 @@
           <p>YOUR SHOPPING BASKET IS EMPTY</p>
         </div>
         <div v-else style="display: flex; flex-direction: row">
-          <one-item v-for="(item, index) in items" v-bind:key="index" v-bind:name="item.name" v-bind:price="item.price" v-bind:image="item.image" v-bind:show-add="false"></one-item>
+          <OneItem v-for="(item, index) in items" :key="index" :name="item.name" :price="item.price" :image="item.image" :showAdd="false"></OneItem>
         </div>
       </div>
     </div>
   </template>
   
   <script>
-
   import OneItem from "../components/OneItem.vue";
   import axios from "axios";
   
