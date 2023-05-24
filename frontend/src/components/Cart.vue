@@ -31,7 +31,7 @@
     },
     data() {
       return {
-        currentUser: JSON.parse(localStorage.getItem("currentUser") || "{}"),
+        currentUser: JSON.parse(localStorage.getItem("currentUser")),
         items: []
       };
     },
