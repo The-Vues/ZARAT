@@ -1,23 +1,20 @@
 <template>
-    <div className="container-singin">
-
-      <div className="Left-login-form">
-        <h6 className="login-heading">CREATE AN ACCOUNT</h6>
-        <div className="form-input-label">
-          <input className="form-input-label" type="email" v-model="email" placeholder="E-MAIL" />
+    <div class="container-singin">
+      <div class="Left-login-form">
+        <h6 class="login-heading">CREATE AN ACCOUNT</h6>
+        <div class="form-input-label">
+          <input class="form-input-label" type="email" v-model="email" placeholder="E-MAIL" />
         </div>
-        <div className="form-input-label">
-          <input className="form-input-label" type="password" placeholder="PASSWORD" v-model="password" />
+        <div class="form-input-label">
+          <input class="form-input-label" type="password" placeholder="PASSWORD" v-model="password" />
         </div>
-        <div className="form-input-label">
-            
-      <input type="text" id="fname" v-model="fname" placeholder="First Name" required>
+        <div class="form-input-label">
+          <input type="text" id="fname" v-model="fname" placeholder="First Name" required>
         </div>
-        <div className="form-input-label">
-            
-      <input type="text" id="lname" v-model="lname" placeholder="Last Name" required>
+        <div class="form-input-label">
+          <input type="text" id="lname" v-model="lname" placeholder="Last Name" required>
         </div>
-        <button className="login-btn">CREATE ACCOUNT</button>
+        <button class="login-btn" @click="submitForm">CREATE ACCOUNT</button>
         <br />
       </div>
     </div>
@@ -25,40 +22,32 @@
   
   <script lang="ts">
   import { defineComponent } from 'vue';
+  import axios from 'axios';
   
-
-    
-    export default defineComponent({
-  data() {
-    return {
-    email:'',
-    password:'',
-    fname:'',
-    lname:''
+  export default defineComponent({
+    data() {
+      return {
+        email: '',
+        password: '',
+        fname: '',
+        lname: ''
       };
-  },
-  methods: {
-    submitForm() {
-      // Perform sign-up logic here
-      // You can make an API request to your backend server to create a new user
-      // using the entered name, email, and password
-      // Example:
-      // axios.post('/api/signup', { name: this.name, email: this.email, password: this.password })
-      //   .then(response => {
-      //     // Handle success
-      //   })
-      //   .catch(error => {
-      //     // Handle error
-      //   });
-
-      // After successful sign-up, you can redirect the user to another page
-      // using Vue Router
-      // Example:
-      // this.$router.push('/dashboard');
+    },
+    methods: {
+      submitForm() {
+        const { email, password, fname, lname } = this
+        axios.post('http://localhost:3001/signup', { email, pass: password, fName: fname, lName: lname })
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      }
     }
-  }
-});
-</script>
+  });
+  </script>
+  
 
 <style>
 body{
