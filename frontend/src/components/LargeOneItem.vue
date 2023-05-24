@@ -1,0 +1,49 @@
+<template>
+    <div class="large-one-item">
+      <img :src="image" :alt="name" />
+      <p>{{ name }}</p>
+      <p>{{ price }} TND</p>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    props: {
+      image: String,
+      name: String,
+      price: Number
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .large-one-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 500px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .large-one-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .large-one-item p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+  }
+  </style>
+  

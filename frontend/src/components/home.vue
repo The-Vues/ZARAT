@@ -159,7 +159,7 @@ body {
 .masthead {
   height: 100vh;
   min-height: 500px;
-  background-image: url('...');
+  background-image: url('../assets/zarahome.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
