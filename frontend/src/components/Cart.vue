@@ -21,7 +21,7 @@
     </div>
   </template>
   
-  <script>
+  <script lang="ts">
   import OneItem from "../components/OneItem.vue";
   import axios from "axios";
   
