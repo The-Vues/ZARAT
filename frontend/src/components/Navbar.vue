@@ -1,14 +1,14 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
-import { useRouter } from "vue-router";
-import Image from "@/components/Image/Image.vue";
-import Offcanvas from "@/components/Offcanvas/Offcanvas.vue";
-import Search from "@/components/Search/Search.vue";
+import { defineComponent, ref, watch } from "vue"
+import { useRouter } from "vue-router"
+import Image from "@/components/Image/Image.vue"
+import Offcanvas from "@/components/Offcanvas/Offcanvas.vue"
+import Search from "@/components/Search/Search.vue"
 
 interface NavbarProps {
-  showSearch?: boolean;
-  showCart?: boolean;
-  showOffcanvas?: boolean;
+  showSearch?: boolean
+  showCart?: boolean
+  showOffcanvas?: boolean
 }
 
 export default defineComponent({
@@ -33,33 +33,34 @@ export default defineComponent({
     },
   },
   setup(props: NavbarProps) {
-    const router = useRouter();
-    const currentUser = ref<any>(JSON.parse(localStorage.getItem("currentUser") || "null"));
+    const router = useRouter()
+    const currentUser = ref<any>(JSON.parse(localStorage.getItem("currentUser") || "null"))
 
     const logout = () => {
-      localStorage.removeItem("currentUser");
-    };
+      localStorage.removeItem("currentUser")
+    }
 
     watch(currentUser, (newValue) => {
-      console.log(newValue);
-    });
+      console.log(newValue)
+    })
 
     const goToCart = () => {
       if (currentUser.value) {
-        router.push("/cart");
-      } else {
-        router.push("/login");
+        router.push("/cart")
       }
-    };
+      else {
+        router.push("/login")
+      }
+    }
 
     return {
       router,
       currentUser,
       logout,
       goToCart,
-    };
+    }
   },
-});
+})
 </script>
 
 <template>
@@ -101,5 +102,30 @@ export default defineComponent({
 </template>
 
 <style scoped>
+  #menu-button{
+    cursor: pointer;
+  }
 
+  #menu{
+    height: 25px;
+    width: 25px;
+    margin-left: 20px;
+    margin-bottom: 60px;
+    cursor: pointer;
+  }
+
+  #logo{
+    color: transparent;
+    width: 5.2cm;
+    height: 3.2cm;
+  }
+
+  #bag{
+    height: 25px;
+    width: 25px;
+  }
+
+  #navbarResponsive{
+    margin-right: 30px;
+  }
 </style>

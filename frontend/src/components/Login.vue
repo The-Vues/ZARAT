@@ -27,9 +27,10 @@
   <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import axios from 'axios';
-  import { router } from './router';
+ 
   
   export default defineComponent({
+    name:"login",
     setup() {
       const email = ref('');
       const password = ref('');
@@ -53,7 +54,7 @@
               const storedUser = localStorage.getItem("currentUser");
               if (storedUser !== null) {
                 console.log(JSON.parse(storedUser));
-                router.push("/"); // Use the router object to navigate to the desired route
+                // Router.push("/"); // Use the router object to navigate to the desired route
               }
             }
           });
