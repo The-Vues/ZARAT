@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar v-bind:query="this.query"/>
     <header class="masthead">
       <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
         <div class="d-flex justify-content-center"></div>
@@ -136,9 +137,18 @@
 
 <script lang="ts">
 import { ref } from 'vue';
+import Navbar from './Navbar.vue';
 
 export default {
   name: 'Home',
+  components:{Navbar},
+
+  data(){
+    return{
+      query:"im here"
+    }
+  }
+
 
 };
 </script>

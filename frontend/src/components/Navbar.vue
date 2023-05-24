@@ -5,22 +5,24 @@ import { useRouter } from "vue-router"
 import Offcanvas from "./Offcanvas.vue"
 import Search from "./Search.vue"
 
-interface Props{
-  showSearch?: boolean
-  showCart?: boolean
-  showOffcanvas?: boolean
-}
+// interface Props{
+//   showSearch?: boolean
+//   showCart?: boolean
+//   showOffcanvas?: boolean
+// }
 
-const props: Props = defineProps({
-  showSearch: { type: Boolean },
-  showCart: { type: Boolean },
-  showOffcanvas: { type: Boolean }
-})
+// const props: Props = defineProps({
+//   showSearch: { type: Boolean },
+//   showCart: { type: Boolean },
+//   showOffcanvas: { type: Boolean }
+// })
 
 export default defineComponent({
   name: "Navbar",
-  components:{
-    Offcanvas,
+  props: {
+    query:{
+      type:String,
+    }
   },
 
   data() {
@@ -28,6 +30,9 @@ export default defineComponent({
       router: useRouter(),
       currentUser: JSON.parse(localStorage.getItem("currentUser") || "null")
     }
+  },
+  mounted(){
+      console.log(this.query)
   },
 
   methods: {
@@ -55,11 +60,12 @@ export default defineComponent({
       <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="showOffcanvas!==false"/>
       <div class="container px-4 px-lg-5">
         <router-link to="/">
-          <img id="logo" class="navbar-brand" src="../assets/Logo.png" alt="..." style="cursor: pointer"/>
+          <img id="logo" class="navbar-brand" src="../assets/logo2.png" alt="..." style="cursor: pointer"/>
         </router-link>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" v-if="this.props.showSearch !== false">
+            <!-- <li class="nav-item" v-if="this.props.showSearch !== false"> -->
+              <li class="nav-item" >
               <router-link to="/search">
                 <Search/>
               </router-link>
@@ -73,7 +79,8 @@ export default defineComponent({
             <li class="nav-item">
               <a class="nav-link" href="/help">HELP</a>
             </li>
-            <li class="nav-item" v-if="this.props.showCart !== false">
+            <!-- <li class="nav-item" v-if="this.props.showCart !== false"> -->
+              <li class="nav-item" >
               <div class="nav-link" @click="goToCart" style="cursor: pointer">
                 <img id="bag" src="../assets/bag.png" alt=".."/>
               </div>
@@ -86,6 +93,10 @@ export default defineComponent({
 </template>
 
 <style scoped>
+  #pushImg{
+    height: 130px;
+    background-color: white;
+  }
 
   #menu-button{
     cursor: pointer;
