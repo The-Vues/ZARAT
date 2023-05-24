@@ -4,6 +4,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 name:"Search",
+props:['hello'],
 data(){
   return{
     query:""
@@ -53,7 +54,7 @@ mounted(){
 <template>
 
 <div>
-    <Navbar :showSearch="false" />
+    <Navbar v-bind:showSearch="false" v-bind:hello="hello" />
     <div id="search-gender-container">
       <div id="gender-container">
         <!-- <button class="search-gender" @click="handleGenderClick('woman')">WOMAN</button>
