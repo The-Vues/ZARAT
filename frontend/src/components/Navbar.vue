@@ -2,6 +2,9 @@
 import { defineComponent, defineProps } from "vue"
 import { useRouter } from "vue-router"
 
+import Offcanvas from "./Offcanvas.vue"
+import Search from "./Search.vue"
+
 interface Props{
   showSearch?: boolean
   showCart?: boolean
@@ -46,10 +49,10 @@ export default defineComponent({
     <!-- <Offcanvas/> -->
     <div id="pushImg"></div>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <img id="menu" src="@/assets/img/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="props.showOffcanvas !== false"/>
+      <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="showOffcanvas !== false"/>
       <div class="container px-4 px-lg-5">
         <router-link to="/">
-          <img id="logo" class="navbar-brand" src="@/assets/Logo.png" alt="..." style="cursor: pointer"/>
+          <img id="logo" class="navbar-brand" src="../assets/Logo.png" alt="..." style="cursor: pointer"/>
         </router-link>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
@@ -69,7 +72,7 @@ export default defineComponent({
             </li>
             <li class="nav-item" v-if="this.props.showCart !== false">
               <div class="nav-link" @click="goToCart" style="cursor: pointer">
-                <img id="bag" src="@/assets/img/bag.png" alt=".."/>
+                <img id="bag" src="../assets/bag.png" alt=".."/>
               </div>
             </li>
           </ul>
