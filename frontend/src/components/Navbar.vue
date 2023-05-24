@@ -2,7 +2,13 @@
 import { defineComponent, defineProps } from "vue"
 import { useRouter } from "vue-router"
 
-const props = defineProps({
+interface Props{
+  showSearch?: boolean
+  showCart?: boolean
+  showOffcanvas?: boolean
+}
+
+const props: Props = defineProps({
   showSearch: { type: Boolean },
   showCart: { type: Boolean },
   showOffcanvas: { type: Boolean }
@@ -19,16 +25,16 @@ export default defineComponent({
   },
 
   methods: {
-    logout: () => {
+    logout(){
       localStorage.removeItem("currentUser")
     },
 
-    goToCart: () => {
+    goToCart(){
       if (this.currentUser.value) {
-        this.router.push("/cart")
+        this.$router.push("/cart")
       }
       else {
-        this.router.push("/login")
+        this.$router.push("/login")
       }
     }
   }
@@ -40,7 +46,7 @@ export default defineComponent({
     <!-- <Offcanvas/> -->
     <div id="pushImg"></div>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <img id="menu" src="@/assets/img/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="showOffcanvas !== false"/>
+      <img id="menu" src="@/assets/img/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="props.showOffcanvas !== false"/>
       <div class="container px-4 px-lg-5">
         <router-link to="/">
           <img id="logo" class="navbar-brand" src="@/assets/Logo.png" alt="..." style="cursor: pointer"/>
