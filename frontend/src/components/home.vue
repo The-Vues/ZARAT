@@ -136,7 +136,7 @@
 </template>
 
 <script lang="ts">
-import Navbar from './Navbar.vue.js';
+import Navbar from './Navbar.vue';
 
 export default {
   name: 'Home',
