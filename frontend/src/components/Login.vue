@@ -2,9 +2,7 @@
 
 <div>
   <Navbar/>
-
-
-<div   className='container-login'>
+<div className='container-login'>
 
 
 <div className='Left-login-form'>
@@ -79,7 +77,7 @@
   });
   </script>
   
-  <style>
+  <style scoped>
   body{
     background-color: white;
 }
