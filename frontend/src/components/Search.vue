@@ -4,51 +4,15 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 name:"Search",
-props:['hello'],
+
 data(){
   return{
     query:""
   }
 },
-methods:{
-  check(){console.log(this.query)}
-}, 
-mounted(){
-  this.query="mehdi"
-
+methods:{ 
+  
 }
-})
-// //interface for typescript
-// interface State{
-//   query: string,
-//   gender: string,
-//   items: Array<any>,
-// }
-  // setup(){
-  //   const state: State = reactive<State>({
-  //     query: "",
-  //     items: [],
-  //     gender: "woman"
-  //   })
-
-  //   // function to update the query
-  //   const setQuery = (newQuery: string) => {
-  //     state.query = newQuery
-  //   }
-
-  //   // function that we use to update the gender on button click
-  //   const handleGenderClick = (updatedGender) => {
-  //     state.gender = updatedGender
-  //   }
-
-  //   return {
-  //     state,
-  //     setQuery,
-  //     handleGenderClick
-  //   }
-  // }
-
-
 </script>
 
 <template>

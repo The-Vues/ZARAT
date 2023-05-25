@@ -7,6 +7,7 @@ import MiniSearch from "./MiniSearch.vue"
 
 export default defineComponent({
   name: "Navbar",
+  components: { MiniSearch, Offcanvas },
   props: {
     showSearch:{
       type: Boolean
@@ -48,8 +49,8 @@ export default defineComponent({
 
 <template>
   <div>
-    
-    <div id="pushImg"><Offcanvas/></div>
+    <div id="pushImg"></div>
+    <Offcanvas/>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="this.showOffcanvas!==false"/>
       <div class="container px-4 px-lg-5">
@@ -58,7 +59,7 @@ export default defineComponent({
         </router-link>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" v-if="this.showSearch !== false">
+            <li class="nav-item">
               <router-link to="/search">
                 <MiniSearch/>
               </router-link>
