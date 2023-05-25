@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios";
 import { useRouter } from "vue-router";
 
@@ -13,7 +13,7 @@ export default {
     id: String
   },
   setup(props) {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const router = useRouter();
 
     const handleSubmit = async () => {
