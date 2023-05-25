@@ -1,6 +1,7 @@
 <template>
+    <Navbar />
     <div class="container-singin">
-      <!-- <Navbar /> -->
+       
       <div class="Left-login-form">
         <h6 class="login-heading">CREATE AN ACCOUNT</h6>
   
@@ -24,13 +25,13 @@
   <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import axios from 'axios';
-//   import Navbar from './Navbar.vue';
+   import Navbar from './Navbar.vue';
 
   
   export default defineComponent({
     name: 'Page',
     components: {
-    //   Navbar,
+      Navbar,
     },
     setup() {
       const email = ref('');
@@ -47,9 +48,15 @@
           isAdmin: false,
           cart: [],
         };
-  
+
+  /*this line of code is to create a new user and send it to the backend with some constrains if the pass or firstname or lastname
+   or email are empty they can't create a new account*/
+
         axios.post('http://localhost:3001/user/signup', logUser)
           .then((user) => {
+            if((password as any).length===0 ||(email as any).length===0||(fName as any).length===0||(lName as any).length===0){
+                alert('Please fill all the fields');
+            }
             if (user.data === 'Email Already Exists') {
               alert('Email Already Exists');
             } else {

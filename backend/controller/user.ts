@@ -28,6 +28,8 @@ export default {
         }
     }
 },
+
+/* sign up method that create a new user in the database*/
     signup: async (req: Request, res: Response)=>{
 
         const { pass, fName, lName, email } = req.body
