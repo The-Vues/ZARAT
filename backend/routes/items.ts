@@ -7,6 +7,6 @@ router.get("/getAll", item.getAll)
 router.get("/search/:gender", item.searchByGender)
 // router.get("/gender/:gender", item.getByGender)
 
-// router.get("/cartItems/:id", item.getCartItems)
+router.get("/cartItems/:id", item.getCartItems)
 
 export default router;

@@ -48,13 +48,13 @@
   <style scoped>
   @font-face {
     font-family: "zara";
-    src: url("../../Fonts/Neue Helvetica Condensed BQ Regular.otf");
+    src: url("../fonts/Neue\ Helvetica\ Condensed\ BQ\ Regular.otf");
   }
   
   #cart-container {
     margin-left: 4rem;
     font-size: 15px;
-    font-family: "zara";
+    /*font-family: "zara"; */
     font-weight: 100;
   }
   
