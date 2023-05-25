@@ -5,7 +5,7 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import Home from "./components/Home.vue"
+import Home from "./components/home.vue"
 import Login from "./components/Login.vue"
 import SignUP from "./components/SignUP.vue"
 import Cart from "./components/Cart.vue"
