@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar v-bind:query="this.query"/>
+    <Navbar/>
     <header class="masthead">
       <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
         <div class="d-flex justify-content-center"></div>
@@ -136,8 +136,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
-import Navbar from './Navbar.vue';
+import Navbar from './Navbar.vue.js';
 
 export default {
   name: 'Home',
@@ -145,7 +144,7 @@ export default {
 
   data(){
     return{
-      query:"im here"
+      showSearch: false
     }
   }
 

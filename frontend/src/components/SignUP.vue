@@ -1,7 +1,7 @@
 <template>
     <Navbar />
     <div class="container-singin">
-       
+      <Navbar />
       <div class="Left-login-form">
         <h6 class="login-heading">CREATE AN ACCOUNT</h6>
   
@@ -25,8 +25,8 @@
   <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import axios from 'axios';
-   import Navbar from './Navbar.vue';
-
+  
+  import Navbar from './Navbar.vue';
   
   export default defineComponent({
     name: 'Page',
