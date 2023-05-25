@@ -26,7 +26,7 @@
 
 
 <div className='right-login-form'>
-<h4 >NEED ACCOUNT</h4>
+<h6 id="acc" >NEED ACCOUNT ?</h6>
 <br>
         <router-link to="/signup" class="create-btn">CREATE ACCOUNT</router-link>
       </div>
@@ -242,6 +242,10 @@
       #fname{
         outline:"none";
         border:"none"
+      }
+
+      #acc{
+        color: black;
       }
 
   </style>
