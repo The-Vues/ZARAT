@@ -11222,7 +11222,7 @@ body {
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background-image: url("../assets/zarahome.jpg");
+  background-image: url("../assets/img/zarahome.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;

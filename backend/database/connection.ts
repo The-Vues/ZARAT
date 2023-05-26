@@ -1,10 +1,15 @@
-import mysql, { Connection } from "mysql"
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-const connection: Connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "ZARAT"
-})
+const connectDB = async (): Promise<void> => {
+    try {
+        await mongoose.connect(process.env.uri as string);
+        console.log("Connected to MongoDB.");
+    }
+    catch (err) {
+        console.log(err);
+    }
+};
 
-export default connection
+export default connectDB;
