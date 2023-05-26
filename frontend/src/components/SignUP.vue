@@ -1,135 +1,121 @@
 <template>
   <div>
-    <Navbar/>
-    <nav className="">
-        <div className="flex justify-between items-center p-5">
-          <div className="grid gap-1 grid-cols-2">
-            <div>
-              <Link href="/">
-                  <svg viewBox="0 0 100 80" width="25" height="25">
-                    <rect width="70" height="5"></rect>
-                    <rect y="30" width="70" height="5"></rect>
-                    <rect y="60" width="70" height="5"></rect>
-                  </svg>
-              </Link>
-            </div>
+    <Navbar />
+    <div class="container">
+      <div class="left-form">
+        <h2 class="heading-form">PERSONAL DETAILS</h2>
+        <div class="input-text-box">
+          <input class="input-text" type="text" id="email" name="email" placeholder="E-MAIL" v-model="email" />
+        </div>
+        <div class="input-text-box">
+          <div class="input-inline">
+            <input class="input-text" type="password" id="password" name="password" placeholder="PASSWORD" v-model="password" />
+            <input class="input-text" type="password" id="repeatPassword" name="repeatPassword" placeholder="REPEAT PASSWORD" v-model="repeatPassword" />
           </div>
         </div>
-      </nav>
-   <h2 className='headingform'>PERSONAL DETAILS</h2>
-   <div className='changeform-btn'>
-   </div>
-  
-<div className='container'>
-  <div className='Left-form'> 
-  <div className='input-text-box'>
-      <input className="input-text" type="text" id="fname" name="email" placeholder='E-MAIL'   />
-  </div>
-  <div className='input-text-box'>
-      <input   type="password" id="fname" name="password" placeholder='PASSWORD'   />
-  </div>
-  <div className='input-text-box1'>
-   </div>
-  <div className='checkbox'>
-    <div>
-      <input className="form-input-checkbox__input" type="checkbox" name="newsletterCheck" data-qa-input-qualifier="newsletterCheck" />
+        <div class="input-text-box">
+          <div class="input-inline">
+            <input class="input-text" type="text" id="name" name="name" placeholder="NAME" v-model="name" />
+            <input class="input-text" type="text" id="surname" name="surname" placeholder="SURNAME" v-model="surname" />
+          </div>
+        </div>
+        <div class="checkbox">
+          <div>
+            <input class="form-input-checkbox__input" type="checkbox" name="newsletterCheck" v-model="newsletterCheck" />
+          </div>
+          <div>
+            <h6 class="checkbox__label">I want to receive personalized commercial communications from ZARA by email.</h6>
+          </div>
+        </div>
+        <div class="checkbox">
+          <div>
+            <input class="form-input-checkbox__input" type="checkbox" name="privacyCheck" v-model="privacyCheck" />
+          </div>
+          <div>
+            <h6 class="checkbox__label">I have read and understand the Privacy and Cookies Policy.</h6>
+          </div>
+        </div>
+        <button class="signupbtn" @click="handleSubmit">CREATE ACCOUNT</button>
+      </div>
     </div>
-  <div>
-  <h6 className="checkbox__label">I want to receive personalised commercial communications from ZARA by email.</h6>
   </div>
-  </div>
+</template>
 
-  <div className='checkbox'>
-    <div>
-      <input className="form-input-checkbox__input" type="checkbox" name="newsletterCheck" data-qa-input-qualifier="newsletterCheck" />
-    </div>
-  <div>
-  <h6 className="checkbox__label">I have read and understand the Privacy and Cookies Policy</h6>
-  </div>
-  </div>
-  <input type="submit" className='signupbtn' value="CREATE ACCOUNT" @Click="handleSubmit"/>
-  </div> 
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import axios from 'axios';
+
+import Navbar from './Navbar.vue';
+
+export default defineComponent({
+  name: 'Signup',
+  components: {
+    Navbar,
+  },
+  /* this code is to create a new user and send it to the backend with some constraints if the pass or firstname or lastname
+   or email are empty they can't create a new account, and the password must be at least 8 characters */
+   setup() {
+    const email = ref('');
+    const password = ref('');
+    const repeatPassword = ref('');
+    const name = ref('');
+    const surname = ref('');
  
- <div className='right-form'>
-<div className='input-text-box'>
-      <h1 className='dot'>.</h1>
-  </div>
-<div className='input-text-box2'>
-      <input type="password" id="fname" name="fname" placeholder='REPEATE PASSWORD'/>
-  </div>
+    const privacyCheck = ref(false);
 
-  <div className='input-text-box'>
-      <input type="text" id="fname" name="fname" placeholder='NAME'  />
-  </div>
-  <div className='input-text-box'>
-      <input type="text" id="fname" name="fname" placeholder='SURNAME'/>
-  </div>
-  <div className='input-text-box'>
-  </div>
-</div> 
-</div>
-</div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent, ref } from 'vue';
-  import axios from 'axios';
-  
-  import Navbar from './Navbar.vue';
-  
-  export default defineComponent({
-    name: 'SignUP',
-    components: {
-      Navbar,
-    },
-    /* this code is to create a new user and send it to the backend with some constrains if the pass or firstname or lastname
-   or email are empty they can't create a new account and the pass at least must be 8 char */
-    setup() {
-      const email = ref('');
-      const password = ref('');
-      const fName = ref('');
-      const lName = ref('');
-  
-      const handleSubmit = () => {
+    const handleSubmit = () => {
+      if (
+        email.value.length === 0 ||
+        password.value.length === 0 ||
+        repeatPassword.value.length === 0 ||
+        name.value.length === 0 ||
+        surname.value.length === 0
+      ) {
+        return alert('Please fill in all the fields.');
+      } else if (password.value.length < 8) {
+        return alert('Password is weak. It must be at least 8 characters long.');
+      } else if (password.value !== repeatPassword.value) {
+        return alert('Passwords do not match. Please re-enter your password correctly.');
+      } else if (!privacyCheck.value) {
+        return alert('Please agree to the terms and conditions.');
+      } else {
         const logUser = {
           email: email.value,
           pass: password.value,
-          fName: fName.value,
-          lName: lName.value,
+          fName: name.value,
+          lName: surname.value,
           isAdmin: false,
           cart: [],
         };
 
-   if((email.value as any).length ===0 || (fName.value as any).length===0 || (password.value as any).length===0 || (lName.value as any).length===0){
-      return alert('Please fill all the fields');
-    }
-    else if((password.value as any ).length < 6 ){
-      return alert('Password is weak try to make it strong at least it must be 8 characters')
-    }
-        else{
-          axios.post('http://localhost:3001/user/signup',logUser)
-            .then((user) => {
-              
-              if (user.data === 'Email Already Exists') {
-                 return alert('Email Already Exists');
-              } else {
-               return alert('Welcome to ZARA');
-              }
-            });
-        }
-      };
-  
-      return {
-        email,
-        password,
-        fName,
-        lName,
-        handleSubmit,
-      };
-    },
-  });
-  </script>
-  
+        axios.post('http://localhost:3001/user/signup', logUser)
+          .then((response) => {
+            if (response.data === 'Email Already Exists') {
+              alert('Email Already Exists');
+            } else {
+              alert('Welcome to ZARA');
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('An error occurred while creating the account.');
+          });
+      }
+    };
+
+    return {
+      email,
+      password,
+      repeatPassword,
+      name,
+      surname,
+      privacyCheck,
+      handleSubmit,
+    };
+  },
+});
+</script>
 
 <style scoped>
 .container{
