@@ -20,11 +20,11 @@
   import { ref } from 'vue';
   
   export default {
-   
+    name: "Offcanvas",
     setup() {
       const chosen = ref('woman');
   
-      const setChosen = (gender) => {
+      const setChosen = (gender: any) => {
         chosen.value = gender;
       };
   

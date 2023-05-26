@@ -5,21 +5,21 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import Home from "./components/Home.vue"
+import Home from "./components/home.vue"
 import Login from "./components/Login.vue"
 import SignUP from "./components/SignUP.vue"
 import Cart from "./components/Cart.vue"
 import Search from "./components/Search.vue"
-import Help from "./components/Help.vue"
+import Help from"./components/Help.vue"
 
 //routes that the app uses
 const routes = [
   { path: "/", component: Home},
   { path: "/login", component: Login },
-  { path: "/signup", component: SignUP},
-  { path: "/cart", component: Cart},
-  { path: "/search", component: Search},
-  { path: "/help", component: Help}
+  { path: "/signup", component: SignUP },
+  { path: "/cart", component: Cart },
+  { path: "/search", component: Search },
+  { path: "/help", component: Help }
 ]
 
 export const router = createRouter({
