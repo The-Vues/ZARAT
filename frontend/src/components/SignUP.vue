@@ -55,22 +55,30 @@ export default defineComponent({
   },
   /* this code is to create a new user and send it to the backend with some constraints if the pass or firstname or lastname
    or email are empty they can't create a new account, and the password must be at least 8 characters */
-  setup() {
+   setup() {
     const email = ref('');
     const password = ref('');
+    const repeatPassword = ref('');
     const name = ref('');
     const surname = ref('');
+ 
+    const privacyCheck = ref(false);
 
     const handleSubmit = () => {
       if (
         email.value.length === 0 ||
         password.value.length === 0 ||
+        repeatPassword.value.length === 0 ||
         name.value.length === 0 ||
         surname.value.length === 0
       ) {
         return alert('Please fill in all the fields.');
       } else if (password.value.length < 8) {
         return alert('Password is weak. It must be at least 8 characters long.');
+      } else if (password.value !== repeatPassword.value) {
+        return alert('Passwords do not match. Please re-enter your password correctly.');
+      } else if (!privacyCheck.value) {
+        return alert('Please agree to the terms and conditions.');
       } else {
         const logUser = {
           email: email.value,
@@ -99,8 +107,10 @@ export default defineComponent({
     return {
       email,
       password,
+      repeatPassword,
       name,
       surname,
+      privacyCheck,
       handleSubmit,
     };
   },
