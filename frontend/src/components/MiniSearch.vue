@@ -14,7 +14,6 @@ import { defineComponent } from 'vue';
 
 <style scoped>
   #search-bar{
-    font-family: "default";
     background-color: inherit;
     border: none;
     border-bottom: 1px solid rgb(34, 34, 34);

@@ -28,6 +28,8 @@ export default {
         }
     }
 },
+
+/* sign up method that create a new user in the database*/
     signup: async (req: Request, res: Response)=>{
 
         const { pass, fName, lName, email } = req.body
@@ -62,6 +64,22 @@ export default {
             email: (loggedUser as any).email,
             cart: (loggedUser as any).cart
         })
+    },
+
+    getAll: (req: Request, res: Response) => {
+        User.find()
+        .then(result => res.send(result))
+    },
+    addToCart:(req: Request, res: Response)=>{
+        const {userId,itemId}=req.body
+        User.findByIdAndUpdate(userId,{$push:{cart:itemId}}).then(data=>res.send(data))
+    },
+
+    removeFromCart:(req:Request , res: Response)=>{
+        const{UserId,itemId}=req.params
+        User.findByIdAndDelete(UserId,{$pull:{cart:itemId}}).then(User=>res.send(User))
+
     }
+
 }
 
