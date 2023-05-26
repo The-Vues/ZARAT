@@ -2,43 +2,94 @@
 
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-name:"Search",
+import Navbar from './Navbar.vue';
+import OneItem from './OneItem.vue';
+import axios from 'axios';
 
-data(){
-  return{
-    query:""
+export default defineComponent({
+  name:"Search",
+  components: { Navbar, OneItem },
+  data(){
+    return{
+      query:"",
+      gender: "female",
+      items: []
+    }
+  },
+  methods:{ 
+
+    handleGenderClick(str: string){
+      this.gender = str
+    },
+
+    handleSearch(){
+      if(this.query.length){
+        axios.get(`http://localhost:3001/items/search/${this.gender}?query=${this.query}`)
+        .then(result => this.items = result.data)
+      }
+      else{
+        this.items = []
+      }
+    },
   }
-},
-//methods:{ 
-  
 })
 </script>
 
 <template>
 
 <div>
-    <Navbar v-bind:showSearch="false" v-bind:hello="hello" />
+    <Navbar/>
     <div id="search-gender-container">
       <div id="gender-container">
-        <!-- <button class="search-gender" @click="handleGenderClick('woman')">WOMAN</button>
-        <button class="search-gender" @click="handleGenderClick('man')">MAN</button>
-        <button class="search-gender" @click="handleGenderClick('kids')">KIDS</button> -->
+        <button :class=' gender === "female" ? "search-gender-active" : "search-gender-inactive"' @click="handleGenderClick('female')">WOMAN</button>
+        <button :class=' gender === "male" ? "search-gender-active" : "search-gender-inactive"' @click="handleGenderClick('male')">MAN</button>
+        <button :class=' gender === "kids" ? "search-gender-active" : "search-gender-inactive"' @click="handleGenderClick('kids')">KIDS</button>
       </div>
-      <!-- <input
+      <input
         type="text"
-        v-model="state.query"
+        v-model="this.query"
+        @input="handleSearch"
         placeholder="SEARCH FOR AN ITEM, COLOR, COLLECTION..."
-      /> -->
+        style="font-family: medium;"
+      />
     </div>
-    <!-- <div id="items-container">
-      <OneItem v-for="(e, i) in state.items" :key="i" :id="e._id" :name="e.name" :price="e.price" :image="e.image" />
-    </div> -->
+    <div id="items-container">
+      <OneItem v-for="(e, i) in this.items" :key="i" :id="e._id" :name="e.name" :price="e.price" :image="e.image" />
+    </div>
   </div>
 
 </template>
 
 <style scoped>
+  .search-gender-active {
+    position: relative;
+    border: none;
+    background: inherit;
+    font-family: "regular";
+  }
+
+  .search-gender-active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: calc((100% - 20%) / 2);
+    width: 20%;
+    height: 2px;
+    background-color: black;
+  }
+
+  .search-gender-inactive {
+    position: relative;
+    border: none;
+    background: inherit;
+    font-family: "regular";
+  }
+
+  #items-container{
+    display: flex;
+    flex-direction: row;
+  }
+
   #search-gender-container{
     margin: 20px;
   }

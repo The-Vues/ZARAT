@@ -16,10 +16,10 @@ import Help from"./components/Help.vue"
 const routes = [
   { path: "/", component: Home},
   { path: "/login", component: Login },
-  { path: "/signup", component: SignUP},
-  { path: "/cart", component: Cart},
-  { path: "/search", component: Search},
-  { path: "/help", component: Help}
+  { path: "/signup", component: SignUP },
+  { path: "/cart", component: Cart },
+  { path: "/search", component: Search },
+  { path: "/help", component: Help }
 ]
 
 export const router = createRouter({
