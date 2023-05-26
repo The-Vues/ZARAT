@@ -14,6 +14,7 @@
   import axios from 'axios';
   
   export default defineComponent({
+    name: "helps",
     setup() {
       const keyword = ref('');
       const answer = ref('');
