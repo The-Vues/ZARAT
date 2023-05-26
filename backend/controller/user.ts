@@ -63,6 +63,11 @@ export default {
             email: (loggedUser as any).email,
             cart: (loggedUser as any).cart
         })
+    },
+
+    getAll: (req: Request, res: Response) => {
+        User.find()
+        .then(result => res.send(result))
     }
 }
 
