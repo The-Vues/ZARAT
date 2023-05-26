@@ -137,17 +137,9 @@
     </section>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent} from 'vue';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 
-export default defineComponent({
-  name: 'Home'  
-});
-</script>
-<style scoped>
-@charset "UTF-8";
+<script>
+import { ref } from 'vue';
 
 @font-face {
   font-family: "default";
