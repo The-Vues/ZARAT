@@ -10,7 +10,7 @@ import Login from "./components/Login.vue"
 import SignUP from "./components/SignUP.vue"
 import Cart from "./components/Cart.vue"
 import Search from "./components/Search.vue"
-import Help from "./components/Help.vue"
+import Help from"./components/Help.vue"
 
 //routes that the app uses
 const routes = [
