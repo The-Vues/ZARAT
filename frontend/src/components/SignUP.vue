@@ -21,7 +21,7 @@
         </div>
         <div class="checkbox">
           <div>
-            <input class="form-input-checkbox__input" type="checkbox" name="newsletterCheck" v-model="newsletterCheck" />
+            <input class="form-input-checkbox__input" type="checkbox" name="newsletterCheck"  />
           </div>
           <div>
             <h6 class="checkbox__label">I want to receive personalized commercial communications from ZARA by email.</h6>
