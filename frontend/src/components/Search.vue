@@ -2,6 +2,54 @@
 
 import { defineComponent } from 'vue';
 
+<<<<<<< HEAD
+export default defineComponent({
+name:"Search",
+data(){
+  return{
+    query:""
+  }
+},
+methods:{
+  check(){console.log(this.query)}
+}, 
+mounted(){
+  this.query="mehdi"
+
+}
+})
+// //interface for typescript
+// interface State{
+//   query: string,
+//   gender: string,
+//   items: Array<any>,
+// }
+  // setup(){
+  //   const state: State = reactive<State>({
+  //     query: "",
+  //     items: [],
+  //     gender: "woman"
+  //   })
+
+  //   // function to update the query
+  //   const setQuery = (newQuery: string) => {
+  //     state.query = newQuery
+  //   }
+
+  //   // function that we use to update the gender on button click
+  //   const handleGenderClick = (updatedGender) => {
+  //     state.gender = updatedGender
+  //   }
+
+  //   return {
+  //     state,
+  //     setQuery,
+  //     handleGenderClick
+  //   }
+  // }
+
+
+=======
 import Navbar from './Navbar.vue';
 import OneItem from './OneItem.vue';
 import axios from 'axios';
@@ -33,11 +81,30 @@ export default defineComponent({
     },
   }
 })
+>>>>>>> f48d9807efc4fbb66f0c71974d5177d2c832c155
 </script>
 
 <template>
 
 <div>
+<<<<<<< HEAD
+    <Navbar :showSearch="false" />
+    <div id="search-gender-container">
+      <div id="gender-container">
+        <!-- <button class="search-gender" @click="handleGenderClick('woman')">WOMAN</button>
+        <button class="search-gender" @click="handleGenderClick('man')">MAN</button>
+        <button class="search-gender" @click="handleGenderClick('kids')">KIDS</button> -->
+      </div>
+      <!-- <input
+        type="text"
+        v-model="state.query"
+        placeholder="SEARCH FOR AN ITEM, COLOR, COLLECTION..."
+      /> -->
+    </div>
+    <!-- <div id="items-container">
+      <OneItem v-for="(e, i) in state.items" :key="i" :id="e._id" :name="e.name" :price="e.price" :image="e.image" />
+    </div> -->
+=======
     <Navbar/>
     <div id="search-gender-container">
       <div id="gender-container">
@@ -56,11 +123,14 @@ export default defineComponent({
     <div id="items-container">
       <OneItem v-for="(e, i) in this.items" :key="i" :id="e._id" :name="e.name" :price="e.price" :image="e.image" />
     </div>
+>>>>>>> f48d9807efc4fbb66f0c71974d5177d2c832c155
   </div>
 
 </template>
 
 <style scoped>
+<<<<<<< HEAD
+=======
   .search-gender-active {
     position: relative;
     border: none;
@@ -90,6 +160,7 @@ export default defineComponent({
     flex-direction: row;
   }
 
+>>>>>>> f48d9807efc4fbb66f0c71974d5177d2c832c155
   #search-gender-container{
     margin: 20px;
   }
