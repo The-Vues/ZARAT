@@ -9,6 +9,7 @@
 import { defineComponent } from 'vue'
 import { RouterView } from 'vue-router'
 
+
 export default defineComponent({
   name: 'App',
   components: {
@@ -19,12 +20,12 @@ export default defineComponent({
 
 <style>
   @font-face {
-    font-family: "default";
-    src: url("./fonts/Helvetica\ Neue\ UltraLight.ttf");
+    font-family: "medium";
+    src: url("./fonts/Helvetica Neue W01 66 Medium It.ttf");
   }
 
   @font-face {
-    font-family: "medium";
-    src: url("./fonts/Helvetica\ Neue\ W01\ 66\ Medium\ It.ttf");
+    font-family: "regular";
+    src: url("./fonts/Neue Helvetica Condensed BQ Regular.otf");
   }
 </style>

@@ -186,11 +186,9 @@
   
   }
   .Left-form{
-    /* border: 1px solid red; */
     width: 30%;
   }
   .right-form{
-    /* border: 1px solid green; */
     width: 40%;
   }
   .dot{
@@ -217,7 +215,6 @@
   .signup-footer{
     display: flex;
     width: 40%;
-    /* border: 1px solid black; */
     justify-content: space-between;
     margin: 8%;
   }
