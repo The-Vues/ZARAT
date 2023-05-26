@@ -6,7 +6,6 @@
       <p class="detail-text" style="position: absolute; transform: translateX(155px)">{{ price }} TND</p>
     </div>
     <AddToCart v-if="showAdd" :id="id"></AddToCart>
-    <button class="delete-button" @click="deleteCard">Delete</button>
   </div>
 </template>
 
@@ -22,22 +21,12 @@ export default {
     image: String,
     showAdd: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   components: {
-    AddToCart,
-  },
-  methods: {
-    deleteCard() {
-      // Find the index of the current item in the parent component's items array
-      const index = this.$parent.items.findIndex((item) => item.id === this.id);
-      if (index !== -1) {
-        // Remove the item from the parent component's items array
-        this.$parent.items.splice(index, 1);
-      }
-    },
-  },
+    AddToCart
+  }
 };
 </script>
 
@@ -54,14 +43,5 @@ export default {
 .detail-text {
   font-family: "regular";
   font-size: 16px;
-}
-
-.delete-button {
-  margin-top: 10px;
-  background-color: gray;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
 }
 </style>
