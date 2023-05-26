@@ -52,7 +52,7 @@ export default defineComponent({
     <div id="pushImg"></div>
     <Offcanvas/>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="this.showOffcanvas!==false"/>
+      <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas"/>
       <div class="container px-4 px-lg-5">
         <router-link to="/">
           <img id="logo" class="navbar-brand" src="../assets/logo2.png" alt="..." style="cursor: pointer"/>

@@ -137,9 +137,19 @@
     </section>
   </div>
 </template>
+<script lang="ts">
+import { defineComponent} from 'vue';
+import Navbar from '../components/Navbar.vue';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
-<script>
-import { ref } from 'vue';
+export default defineComponent({
+  name:'Home', 
+  components:{Navbar}
+});
+</script>
+<style scoped>
+@charset "UTF-8";
 
 @font-face {
   font-family: "default";
