@@ -131,7 +131,7 @@
   </script>
   
 
-<style>
+<style scoped>
 .container{
     width: 100%;
     /* border: 1px solid red; */

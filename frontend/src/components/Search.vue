@@ -10,9 +10,9 @@ data(){
     query:""
   }
 },
-methods:{ 
+//methods:{ 
   
-}
+})
 </script>
 
 <template>
