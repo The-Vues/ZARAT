@@ -12,7 +12,6 @@ export interface Help extends Document {
     keyword: String,
   });
 
-  const HelpModel = mongoose.model<Help>('help', Help);
+  const HelpModel = mongoose.model<Help>('helpers', Help);
   export default HelpModel;
 
-  

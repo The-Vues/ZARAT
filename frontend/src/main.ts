@@ -10,7 +10,7 @@ import Login from "./components/Login.vue"
 import SignUP from "./components/SignUP.vue"
 import Cart from "./components/Cart.vue"
 import Search from "./components/Search.vue"
-import Help from "./components/Help.vue"
+import helps from "./components/Helps.vue"
 
 //routes that the app uses
 const routes = [
@@ -19,7 +19,7 @@ const routes = [
   { path: "/signup", component: SignUP},
   { path: "/cart", component: Cart},
   { path: "/search", component: Search},
-  { path: "/help", component: Help}
+  { path: "/help", component: helps},
 ]
 
 export const router = createRouter({
