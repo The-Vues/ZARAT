@@ -137,17 +137,9 @@
     </section>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent} from 'vue';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 
-export default defineComponent({
-  name: 'Home'  
-});
-</script>
-<style scoped>
-@charset "UTF-8";
+<script>
+import { ref } from 'vue';
 
 @font-face {
   font-family: "default";
@@ -11222,7 +11214,7 @@ body {
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background-image: url("../assets/img/zarahome.jpg");
+  background-image: url("../assets/zarahome.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;

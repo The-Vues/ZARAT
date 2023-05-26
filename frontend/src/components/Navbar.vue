@@ -1,82 +1,67 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
-import { useRouter } from "vue-router";
-import Image from "@/components/Image/Image.vue";
-import Offcanvas from "@/components/Offcanvas/Offcanvas.vue";
-import Search from "@/components/Search/Search.vue";
+import { defineComponent } from "vue"
+import { useRouter } from "vue-router"
 
-interface NavbarProps {
-  showSearch?: boolean;
-  showCart?: boolean;
-  showOffcanvas?: boolean;
-}
+import Offcanvas from "./Offcanvas.vue"
+import MiniSearch from "./MiniSearch.vue"
 
 export default defineComponent({
   name: "Navbar",
-  components: {
-    Image,
-    Offcanvas,
-    Search,
-  },
+  components: { MiniSearch, Offcanvas },
   props: {
-    showSearch: {
-      type: Boolean,
-      default: true,
+    showSearch:{
+      type: Boolean
     },
-    showCart: {
-      type: Boolean,
-      default: true,
+    showCart:{
+      type: Boolean
     },
     showOffcanvas: {
-      type: Boolean,
-      default: true,
-    },
+      type: Boolean
+    }
   },
-  setup(props: NavbarProps) {
-    const router = useRouter();
-    const currentUser = ref<any>(JSON.parse(localStorage.getItem("currentUser") || "null"));
 
-    const logout = () => {
-      localStorage.removeItem("currentUser");
-    };
-
-    watch(currentUser, (newValue) => {
-      console.log(newValue);
-    });
-
-    const goToCart = () => {
-      if (currentUser.value) {
-        router.push("/cart");
-      } else {
-        router.push("/login");
-      }
-    };
-
+  data() {
     return {
-      router,
-      currentUser,
-      logout,
-      goToCart,
-    };
+      router: useRouter(),
+      currentUser: JSON.parse(localStorage.getItem("currentUser"))
+    }
   },
-});
+  mounted(){
+      console.log(this.showSearch)
+  },
+
+  methods: {
+    logout(){
+      localStorage.removeItem("currentUser")
+    },
+
+    goToCart(){
+      if (this.currentUser.value) {
+        this.$router.push("/cart")
+      }
+      else {
+        this.$router.push("/login")
+      }
+    }
+  }
+})
 </script>
 
 <template>
   <div>
-    <Offcanvas/>
     <div id="pushImg"></div>
+    <Offcanvas/>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <img id="menu" src="@/assets/img/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="showOffcanvas !== false"/>
+      <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="this.showOffcanvas!==false"/>
       <div class="container px-4 px-lg-5">
         <router-link to="/">
-          <img id="logo" class="navbar-brand" src="@/assets/Logo.png" alt="..." style="cursor: pointer"/>
+          <img id="logo" class="navbar-brand" src="../assets/logo2.png" alt="..." style="cursor: pointer"/>
         </router-link>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" v-if="showSearch !== false">
+            <li class="nav-item">
               <router-link to="/search">
-                <Search/>
+                <MiniSearch/>
               </router-link>
             </li>
             <li class="nav-item" v-if="!currentUser">
@@ -88,9 +73,9 @@ export default defineComponent({
             <li class="nav-item">
               <a class="nav-link" href="/help">HELP</a>
             </li>
-            <li class="nav-item" v-if="showCart !== false">
+            <li class="nav-item" v-if="this.showCart !== false">
               <div class="nav-link" @click="goToCart" style="cursor: pointer">
-                <img id="bag" src="@/assets/img/bag.png" alt=".."/>
+                <img id="bag" src="../assets/bag.png" alt=".."/>
               </div>
             </li>
           </ul>
@@ -101,5 +86,35 @@ export default defineComponent({
 </template>
 
 <style scoped>
+  #pushImg{
+    height: 130px;
+    background-color: white;
+  }
 
+  #menu-button{
+    cursor: pointer;
+  }
+
+  #menu{
+    height: 25px;
+    width: 25px;
+    margin-left: 20px;
+    margin-bottom: 60px;
+    cursor: pointer;
+  }
+
+  #logo{
+    color: transparent;
+    width: 5.2cm;
+    height: 3.2cm;
+  }
+
+  #bag{
+    height: 25px;
+    width: 25px;
+  }
+
+  .navbarResponsive{
+    margin-right: 30px;
+  }
 </style>

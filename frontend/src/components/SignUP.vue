@@ -1,133 +1,224 @@
 <template>
-    <div className="container-singin">
-
-      <div className="Left-login-form">
-        <h6 className="login-heading">CREATE AN ACCOUNT</h6>
-        <div className="form-input-label">
-          <input className="form-input-label" type="email" v-model="email" placeholder="E-MAIL" />
+  <div>
+    <Navbar />
+    <div class="container">
+      <div class="left-form">
+        <h2 class="heading-form">PERSONAL DETAILS</h2>
+        <div class="input-text-box">
+          <input class="input-text" type="text" id="email" name="email" placeholder="E-MAIL" v-model="email" />
         </div>
-        <div className="form-input-label">
-          <input className="form-input-label" type="password" placeholder="PASSWORD" v-model="password" />
+        <div class="input-text-box">
+          <div class="input-inline">
+            <input class="input-text" type="password" id="password" name="password" placeholder="PASSWORD" v-model="password" />
+            <input class="input-text" type="password" id="repeatPassword" name="repeatPassword" placeholder="REPEAT PASSWORD" v-model="repeatPassword" />
+          </div>
         </div>
-        <div className="form-input-label">
-            
-      <input type="text" id="fname" v-model="fname" placeholder="First Name" required>
+        <div class="input-text-box">
+          <div class="input-inline">
+            <input class="input-text" type="text" id="name" name="name" placeholder="NAME" v-model="name" />
+            <input class="input-text" type="text" id="surname" name="surname" placeholder="SURNAME" v-model="surname" />
+          </div>
         </div>
-        <div className="form-input-label">
-            
-      <input type="text" id="lname" v-model="lname" placeholder="Last Name" required>
+        <div class="checkbox">
+          <div>
+            <input class="form-input-checkbox__input" type="checkbox" name="newsletterCheck" v-model="newsletterCheck" />
+          </div>
+          <div>
+            <h6 class="checkbox__label">I want to receive personalized commercial communications from ZARA by email.</h6>
+          </div>
         </div>
-        <button className="login-btn">CREATE ACCOUNT</button>
-        <br />
+        <div class="checkbox">
+          <div>
+            <input class="form-input-checkbox__input" type="checkbox" name="privacyCheck" v-model="privacyCheck" />
+          </div>
+          <div>
+            <h6 class="checkbox__label">I have read and understand the Privacy and Cookies Policy.</h6>
+          </div>
+        </div>
+        <button class="signupbtn" @click="handleSubmit">CREATE ACCOUNT</button>
       </div>
     </div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent } from 'vue';
-  
+  </div>
+</template>
 
-    
-    export default defineComponent({
-  data() {
-    return {
-    email:'',
-    password:'',
-    fname:'',
-    lname:''
-      };
+
+<script>
+import { defineComponent, ref } from 'vue';
+import axios from 'axios';
+
+import Navbar from './Navbar.vue';
+
+export default defineComponent({
+  name: 'Signup',
+  components: {
+    Navbar,
   },
-  methods: {
-    submitForm() {
-      // Perform sign-up logic here
-      // You can make an API request to your backend server to create a new user
-      // using the entered name, email, and password
-      // Example:
-      // axios.post('/api/signup', { name: this.name, email: this.email, password: this.password })
-      //   .then(response => {
-      //     // Handle success
-      //   })
-      //   .catch(error => {
-      //     // Handle error
-      //   });
+  /* this code is to create a new user and send it to the backend with some constraints if the pass or firstname or lastname
+   or email are empty they can't create a new account, and the password must be at least 8 characters */
+   setup() {
+    const email = ref('');
+    const password = ref('');
+    const repeatPassword = ref('');
+    const name = ref('');
+    const surname = ref('');
+ 
+    const privacyCheck = ref(false);
 
-      // After successful sign-up, you can redirect the user to another page
-      // using Vue Router
-      // Example:
-      // this.$router.push('/dashboard');
-    }
-  }
+    const handleSubmit = () => {
+      if (
+        email.value.length === 0 ||
+        password.value.length === 0 ||
+        repeatPassword.value.length === 0 ||
+        name.value.length === 0 ||
+        surname.value.length === 0
+      ) {
+        return alert('Please fill in all the fields.');
+      } else if (password.value.length < 8) {
+        return alert('Password is weak. It must be at least 8 characters long.');
+      } else if (password.value !== repeatPassword.value) {
+        return alert('Passwords do not match. Please re-enter your password correctly.');
+      } else if (!privacyCheck.value) {
+        return alert('Please agree to the terms and conditions.');
+      } else {
+        const logUser = {
+          email: email.value,
+          pass: password.value,
+          fName: name.value,
+          lName: surname.value,
+          isAdmin: false,
+          cart: [],
+        };
+
+        axios.post('http://localhost:3001/user/signup', logUser)
+          .then((response) => {
+            if (response.data === 'Email Already Exists') {
+              alert('Email Already Exists');
+            } else {
+              alert('Welcome to ZARA');
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('An error occurred while creating the account.');
+          });
+      }
+    };
+
+    return {
+      email,
+      password,
+      repeatPassword,
+      name,
+      surname,
+      privacyCheck,
+      handleSubmit,
+    };
+  },
 });
 </script>
 
-<style>
-body{
+<style scoped>
+.container {
+  display: flex;
+  margin: 6% 6%;
+}
+
+.left-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.heading-form {
+  font-size: 14px;
+  margin-top: 0;
+  color: #000;
+  font-weight: 550;
+  margin-bottom: 20px;
+}
+
+.input-text-box {
+  margin-bottom: 20px;
+}
+
+.input-text {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  font-size: 14px;
+  background-color: transparent;
+  color: #000;
+}
+
+.input-text:focus{
+outline: none;
+}
+.input-inline {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.input-inline .input-text {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #000;
+}
+
+.checkbox__label {
+  font-size: 14px;
+  color: #000;
+  margin-left: 10px;
+}
+
+.signupbtn {
+  width: 100%;
   background-color: white;
+  color: black;
+  padding: 14px;
+  font-size: 14px;
+  margin-top: 20px;
+  border: 2px solid black; /* Add border */
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
-.container-login{
-  width: 60%;
-      display: flex;
-      color: gray;
-  font-size: 90%;
-  margin:14%;
-  justify-content: space-between;
-  margin: 2%;
-  margin-top: 9%;
-  }
-  .right-p{
-  margin-top: 2%;
 
-  }
-  .right-login-form{
-      width: 50%;
-      margin-top: 8%;
-  }
-  .forgotpassword{
-      color: black;
-      font-size: 70%;
-
-  }
-  .Left-login-form{
-      width: 40%;
-  }
-  .login-heading{
-      margin: 4%;
-      color: black;
-      font-size: small;
-      
-  }
-  .create-btn{
-      background-color: rgba(0, 0, 0, 0.985);
-      border: solid;
-      text-align: center;
-      font-size: 90%;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-      padding:2% 32% 3% 10%;
-      transform: translate(76px, -81px);
+.signupbtn:hover {
+  background-color: #222;
 }
-  .create-btn:hover{
-      color: rgb(255, 255, 255);
-  }
-  .login-btn{
-      background-color: black;
-      width: 80%;
-      height: 13%;
-      text-align: center;
-      font-size: 90%;
-      color: white;
-      text-decoration: none;
-      margin-top: 6%;
-  }
-  .login-btn:hover{
-  color: rgb(255, 255, 255);
-  }
-  #need{
-        margin-left: 150px;
-    font-size: small;
-    color: black;
-    margin-bottom: 100px;
-  }
+
+.signupbtn:active {
+  background-color: #111;
+}
+
+input[type='password']::-webkit-input-placeholder,
+input[type='text']::-webkit-input-placeholder {
+  font-size: 14px;
+  color: #6a6a6a;
+}
+
+input[type='password']:-moz-placeholder,
+input[type='text']:-moz-placeholder {
+  font-size: 14px;
+  color: #6a6a6a;
+}
+
+input[type='password']::-moz-placeholder,
+input[type='text']::-moz-placeholder {
+  font-size: 14px;
+  color: #6a6a6a;
+}
+
+input[type='password']:-ms-input-placeholder,
+input[type='text']:-ms-input-placeholder {
+  font-size: 14px;
+  color: #6a6a6a;
+}
 </style>
-  
-  
