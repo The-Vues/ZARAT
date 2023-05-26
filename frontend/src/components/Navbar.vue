@@ -52,7 +52,7 @@ export default defineComponent({
     <div id="pushImg"></div>
     <Offcanvas/>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" v-if="this.showOffcanvas!==false"/>
+      <img id="menu" src="../assets/menu.png" alt="..." data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" />
       <div class="container px-4 px-lg-5">
         <router-link to="/">
           <img id="logo" class="navbar-brand" src="../assets/logo2.png" alt="..." style="cursor: pointer"/>
@@ -73,7 +73,7 @@ export default defineComponent({
             <li class="nav-item">
               <a class="nav-link" href="/help">HELP</a>
             </li>
-            <li class="nav-item" v-if="this.showCart !== false">
+            <li class="nav-item" >
               <div class="nav-link" @click="goToCart" style="cursor: pointer">
                 <img id="bag" src="../assets/bag.png" alt=".."/>
               </div>
@@ -112,6 +112,7 @@ export default defineComponent({
   #bag{
     height: 25px;
     width: 25px;
+    margin-left:25px;
   }
 
   .navbarResponsive{

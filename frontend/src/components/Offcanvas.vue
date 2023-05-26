@@ -35,4 +35,13 @@
     },
   };
   </script>
+  <style scoped>
+  .search-gender{
+    position: relative;
+    border: none;
+    background: inherit;
+    font-family: "regular";
+
+  }
+  </style>
   
