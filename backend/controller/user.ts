@@ -39,6 +39,7 @@ export default {
         }
         else{
             const hashedPassword: String = await bcrypt.hash(pass,10)
+            const token = jwt.sign({email: email},process.env.token as Secret)
             const newUser={
                 password: hashedPassword,
                 fName: fName,
@@ -47,7 +48,16 @@ export default {
                 isAdmin: false,
                 cart: []
             }
-            User.create(newUser).then(user=>res.send(user))
+            const createdUser = await User.create(newUser)
+            console.log(createdUser)
+            res.send({
+                token: token,
+                id: (createdUser as any)._id,
+                fName: (createdUser as any).fName,
+                lName: (createdUser as any).lName,
+                email: (createdUser as any).email,
+                cart: (createdUser as any).cart
+            })
         }
     },
     
