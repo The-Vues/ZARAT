@@ -5735,7 +5735,7 @@ textarea.form-control-lg {
     margin: 0;
   }
   .modal-fullscreen-lg-down .modal-content {
-    height: 100%;
+    height: 95%;
     border: 0;
     border-radius: 0;
   }
@@ -5747,7 +5747,7 @@ textarea.form-control-lg {
     overflow-y: auto;
   }
 }
-@media (max-width: 1199.98px) {
+@media (max-width: 1199.100px) {
   .modal-fullscreen-xl-down {
     width: 100vw;
     max-width: none;
@@ -6000,7 +6000,7 @@ textarea.form-control-lg {
 .bs-popover-bottom .popover-header::before, .bs-popover-auto[data-popper-placement^=bottom] .popover-header::before {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 55%;
   display: block;
   width: var(--bs-popover-arrow-width);
   margin-left: calc(-0.5 * var(--bs-popover-arrow-width));
