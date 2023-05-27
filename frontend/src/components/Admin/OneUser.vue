@@ -9,6 +9,9 @@ export default defineComponent({
     fName: String,
     lName: String,
     isAdmin: Boolean
+  },
+  mounted(){
+    console.log("hello")
   }
 })
 

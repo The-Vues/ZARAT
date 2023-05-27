@@ -43,8 +43,9 @@
 
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 import axios from 'axios';
+import { useRouter } from "vue-router"
 
 import Navbar from './Navbar.vue';
 
@@ -63,6 +64,14 @@ export default defineComponent({
     const surname = ref('');
  
     const privacyCheck = ref(false);
+    
+    const router = useRouter()
+
+    onMounted(() => {
+      if(JSON.parse(localStorage.getItem("currentUser"))){
+        router.push("/")
+      }
+    })
 
     const handleSubmit = () => {
       if (
@@ -94,6 +103,9 @@ export default defineComponent({
             if (response.data === 'Email Already Exists') {
               alert('Email Already Exists');
             } else {
+              localStorage.setItem("currentUser",JSON.stringify(response.data))
+              console.log(JSON.parse(localStorage.getItem("currentUser")))
+              router.push("/")
               alert('Welcome to ZARA');
             }
           })

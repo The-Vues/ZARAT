@@ -33,6 +33,7 @@ export default defineComponent({
   methods: {
     logout(){
       localStorage.removeItem("currentUser")
+      window.location.reload()
     },
 
     goToCart(){
