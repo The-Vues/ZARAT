@@ -3,7 +3,14 @@ import User from "../model/user";
 import bcrypt from "bcrypt"
 import jwt, { Secret } from "jsonwebtoken"
 
+interface SearchRequest extends Request{
+    query:{
+        query: string
+    }
+}
+
 export default {
+    // method to login in the user into the website (send user information to later be stored in localstorage)
     login: async (req: Request, res: Response)=>{
     const { email, pass } = req.body
     console.log(email, pass)
@@ -20,6 +27,7 @@ export default {
                 fName: (loggedUser as any).fName,
                 lName: (loggedUser as any).lName,
                 email: (loggedUser as any).email,
+                isAdmin: (loggedUser as any).isAdmin,
                 cart: (loggedUser as any).cart
             })
         }
@@ -72,6 +80,7 @@ export default {
             fName: (loggedUser as any).fName,
             lName: (loggedUser as any).lName,
             email: (loggedUser as any).email,
+            isAdmin: (loggedUser as any).isAdmin,
             cart: (loggedUser as any).cart
         })
     },
@@ -89,7 +98,30 @@ export default {
         const{UserId,itemId}=req.params
         User.findByIdAndDelete(UserId,{$pull:{cart:itemId}}).then(User=>res.send(User))
 
-    }
+    },
 
+    makeAdmin: (req: Request, res: Response) => {
+        const { id } = req.params
+        User.findByIdAndUpdate(id,{isAdmin: true})
+        .then(result => res.send(result))
+    },
+
+    removeUser: (req: Request, res: Response) => {
+        const { id } = req.params
+        User.findByIdAndDelete(id)
+        .then(result => res.send(result))
+    },
+
+    searchUsers: (req: SearchRequest, res: Response) => {
+        const { query } = req.query
+        User.find({
+            $or:[
+                { email: {$regex: new RegExp(query, "i")} },
+                { fName: {$regex: new RegExp(query,"i")} },
+                { lName: {$regex: new RegExp(query,"i")}}
+            ]
+        })
+        .then(result => res.send(result))
+    }
 }
 

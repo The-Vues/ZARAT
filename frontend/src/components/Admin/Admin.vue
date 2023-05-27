@@ -1,36 +1,41 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import axios from "axios"
-  import OneUser from './OneUser.vue';
-  import { toRaw } from '@vue/reactivity';
 
-  interface UserData {
-    _id: string;
-    email: string;
-    fName: string;
-    lName: string;
-    isAdmin: boolean;
-  }
+  import OneUser from './OneUser.vue';
+  import Navbar from '../Navbar.vue';
 
   export default defineComponent({
     name: "Admin",
-    components: { OneUser },
+    components: { OneUser, Navbar },
     data(){
       return {
-        users: [] as UserData[]
+        rawUsers: [],
+        query: ""
       }
     },
+
     mounted(){
-      var rawUsers: UserData[] = toRaw(this.users)
       axios.get("http://localhost:3001/user/getAll")
-      .then(result => {rawUsers = result.data; console.log(rawUsers)})
+      .then(result => this.rawUsers = result.data)
+    },
+
+    methods: {
+
+      searchUsers(){
+        axios.get(`http://localhost:3001/user/searchUsers?query=${this.query}`)
+        .then(result => this.rawUsers = result.data)
+      }
+      
     }
   })
 </script>
 
 <template>
 
-<div id="admin-parent">
+<div class="admin-parent">
+  <Navbar/>
+  <input id="user-search" type="text" placeholder="search for users" @input="searchUsers" v-model="query">
   <table>
     <thead>
       <tr>
@@ -40,24 +45,23 @@
         <th class="column-container">Admin</th>
       </tr>
     </thead>
-    <div id="users-container">
-      <OneUser v-for="(e,i) in rawUsers" :key="i" :id="e._id" :email="e.email" :fName="e.fName" :lName="e.lName" :isAdmin="e.isAdmin"/>
-    </div>
+      <OneUser v-for="(e,i) in this.rawUsers" :key="i" :id="e._id" :email="e.email" :fName="e.fName" :lName="e.lName" :isAdmin="e.isAdmin"/>
   </table>
 </div>
 
 </template>
 
 <style scoped>
-
-  #admin-parent{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .column-container{
-    padding: 90px
+    padding: 50px
   }
 
+  #user-search{
+    padding-right: 50rem;
+    margin-left: 50px;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid rgb(34,34,34);
+    outline: none;
+  }
 </style>

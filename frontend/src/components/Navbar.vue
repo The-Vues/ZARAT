@@ -27,7 +27,7 @@ export default defineComponent({
     }
   },
   mounted(){
-      console.log(this.showSearch)
+      console.log(this.currentUser)
   },
 
   methods: {
@@ -37,12 +37,7 @@ export default defineComponent({
     },
 
     goToCart(){
-      if (this.currentUser.value) {
-        this.$router.push("/cart")
-      }
-      else {
-        this.$router.push("/login")
-      }
+      this.$router.push("/cart")
     }
   }
 })
@@ -61,6 +56,9 @@ export default defineComponent({
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+              <a class="nav-link" href="/admin" v-if="currentUser && currentUser.isAdmin">Admin Dashboard</a>
+            </li>
+            <li class="nav-item">
               <router-link to="/search">
                 <MiniSearch/>
               </router-link>
@@ -74,7 +72,7 @@ export default defineComponent({
             <li class="nav-item">
               <a class="nav-link" href="/help">HELP</a>
             </li>
-            <li class="nav-item" v-if="this.showCart !== false">
+            <li class="nav-item">
               <div class="nav-link" @click="goToCart" style="cursor: pointer">
                 <img id="bag" src="../assets/bag.png" alt=".."/>
               </div>
