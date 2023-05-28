@@ -23,7 +23,7 @@ export default defineComponent({
     },
     async removeUser(){
       const token = JSON.parse(localStorage.getItem("currentUser")).token
-      const response = await axios.delete(`http://localhost:3001/user/removeUser/${this.id}`,{
+      await axios.delete(`http://localhost:3001/user/removeUser/${this.id}`,{
         headers: {Authorization: token}
       })
       alert(`user: ${this.id} has been removed`)

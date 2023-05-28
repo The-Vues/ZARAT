@@ -12,6 +12,7 @@ import Cart from "./components/Cart.vue"
 import Search from "./components/Search.vue"
 import helps from "./components/helps.vue"
 import Admin from "./components/Admin/Admin.vue"
+import Clothes from "./components/Clothes.vue"
 
 //routes that the app uses
 const routes = [
@@ -21,7 +22,8 @@ const routes = [
   { path: "/cart", component: Cart },
   { path: "/search", component: Search },
   { path: "/help", component: helps },
-  { path: "/admin", component: Admin }
+  { path: "/admin", component: Admin },
+  { path: "/clothes/:gender/:type", component: Clothes}
 ]
 
 export const router = createRouter({

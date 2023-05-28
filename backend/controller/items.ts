@@ -30,7 +30,7 @@ export default {
     .then((found: any)=>res.send(found))
   },
 
-
+  // method to get cart items from a specific user
   getCartItems: async (req: Request, res: Response) => {
     const { id } = req.params;
     const currentUser = await user.findOne({ _id: id });
@@ -52,7 +52,12 @@ export default {
     const { name, price, image,color, type, size, gender, keyword, description, conditions}=req.body
     items.create({name: name, price: price, image: image, color: color, type: type, size: size, gender: gender, keyword: keyword, description: description, conditions: conditions})
     .then(item=>res.send(item))
+  },
+  
+  getItemsByGenderAndType: (req: Request, res: Response) => {
+    const { gender, type } = req.params
+    items.find({gender: gender, type: type})
+    .then(result => res.send(result))
   }
-
 
 }
