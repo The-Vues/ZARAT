@@ -6,9 +6,9 @@
         </div>
         <div style="margin-left: 30px;">
           <div id="gender-container">
-            <button class="search-gender" @click="setChosen('female')">WOMAN</button>
-            <button class="search-gender" @click="setChosen('male')">MAN</button>
-            <button class="search-gender" @click="setChosen('kids')">KIDS</button>
+            <button :class=" chosen === `female` ? `search-gender-active` : `search-gender-inactive`" @click="setChosen('female')">WOMAN</button>
+            <button :class=" chosen === `male` ? `search-gender-active` : `search-gender-inactive`" @click="setChosen('male')">MAN</button>
+            <button :class=" chosen === `kids` ? `search-gender-active` : `search-gender-inactive`" @click="setChosen('kids')">KIDS</button>
           </div>
         </div>
         <div class="woman-container" v-if="chosen==='female'">
@@ -63,7 +63,31 @@
   </script>
   
 <style scoped>
-  .woman-container{
+
+  .search-gender-active {
+    position: relative;
+    border: none;
+    background: inherit;
+    font-family: "regular";
+  }
+
+  .search-gender-active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: calc((100% - 20%) / 2);
+    width: 20%;
+    height: 2px;
+    background-color: black;
+  }
+  
+  .search-gender-inactive {
+    position: relative;
+    border: none;
+    background: inherit;
+    font-family: "regular";
+  }
+.woman-container{
     display: flex;
     flex-direction: column;
     margin: 30px;
