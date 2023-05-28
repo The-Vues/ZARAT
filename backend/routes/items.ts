@@ -6,7 +6,7 @@ const router: Router = express.Router();
 
 router.get("/getAll", item.getAll)
 router.get("/search/:gender", item.searchByGender)
-// router.get("/gender/:gender", item.getByGender)
+router.get("/clothes/:gender/:type", item.getItemsByGenderAndType)
 
 router.get("/cartItems/:id", item.getCartItems)
 

@@ -14,12 +14,18 @@ export default defineComponent({
 
   methods: {
     async makeAdmin(){
-      await axios.get(`http://localhost:3001/user/makeAdmin/${this.id}`)
+      const token = JSON.parse(localStorage.getItem("currentUser")).token
+      await axios.get(`http://localhost:3001/user/makeAdmin/${this.id}`,{
+        headers: {Authorization: token}
+      })
       alert(`user: ${this.id} has been set to admin`)
       window.location.reload()
     },
     async removeUser(){
-      await axios.delete(`http://localhost:3001/user/removeUser/${this.id}`)
+      const token = JSON.parse(localStorage.getItem("currentUser")).token
+      await axios.delete(`http://localhost:3001/user/removeUser/${this.id}`,{
+        headers: {Authorization: token}
+      })
       alert(`user: ${this.id} has been removed`)
       window.location.reload()
     }

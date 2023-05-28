@@ -6,7 +6,7 @@ const authenticate = async (req: Request,res: Response,next: NextFunction)=>{
   const token = req.headers.authorization
 
   if(!token){
-    res.send({message: "Authorization failed: Unauthorized"})
+    return res.send({message: "Authorization failed: Unauthorized"})
   }
   
   try{
