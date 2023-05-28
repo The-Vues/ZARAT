@@ -864,12 +864,12 @@ progress {
 
 .row-cols-5 > * {
   flex: 0 0 auto;
-  width: 20%;
+  width:30%;
 }
 
 .row-cols-6 > * {
   flex: 0 0 auto;
-  width: 16.6666666667%;
+  width:30%
 }
 
 .col-auto {
@@ -974,11 +974,11 @@ progress {
 }
 
 .offset-10 {
-  margin-left: 83.33333333%;
+margin-left:85%
 }
 
 .offset-11 {
-  margin-left: 91.66666667%;
+  margin-left:20%;
 }
 
 .g-0,
@@ -1129,13 +1129,13 @@ progress {
     margin-left: 0;
   }
   .offset-sm-1 {
-    margin-left: 8.33333333%;
+   margin-left:9%;
   }
   .offset-sm-2 {
-    margin-left: 16.66666667%;
+  margin-left:20%
   }
   .offset-sm-3 {
-    margin-left: 25%;
+    margin-left: 28%;
   }
   .offset-sm-4 {
     margin-left: 33.33333333%;

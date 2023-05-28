@@ -62,7 +62,7 @@
     padding: 0.2em 0em;
   }
   .head {
-   margin-right: 980px;
-   margin-top : -100px;
+    margin-right: 980px;
+    margin-top: -100px;
   }
   </style>
